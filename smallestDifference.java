@@ -8,16 +8,27 @@ public class smallestDifference {
 
         int idxOne = 0;
         int idxTwo = 0;
+        int smallest = Integer.MAX_VALUE;
+        int difference = Integer.MAX_VALUE;
         int[] smallestPair = new int[2];
+
         while(idxOne < arrayOne.length && idxTwo < arrayTwo.length){
-            if(arrayOne[idxOne] < arrayTwo[idxTwo]){
-
+            int firstNum = arrayOne[idxOne];
+            int secondNum = arrayTwo[idxTwo];
+            if(firstNum < secondNum){
+                difference = secondNum - firstNum;
+                idxOne++;
             }
-            else if(arrayOne[idxOne] > arrayTwo[idxTwo]){
-
+            else if(firstNum > secondNum){
+                difference = firstNum - secondNum;
+                idxTwo++;
             }
             else{
-                return new int[] {arrayOne[idxOne],arrayTwo[idxTwo]};
+                return new int[] {firstNum,secondNum};
+            }
+            if(smallest > difference){
+                smallest = difference;
+                smallestPair = new int[] {firstNum, secondNum};
             }
         }
         return smallestPair;
